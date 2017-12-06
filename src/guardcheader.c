@@ -210,15 +210,15 @@ int guardcheader
 		
 		if ( output )
 		{
-			switch ( setjmp(jump_buffer) )
+			if ( setjmp(jump_buffer) == 0 )
 			{
-				case 0:
-					guardcheader_internal(guard_base, input, output, input_name, output_name);
-					
-					rv = EXIT_SUCCESS;
-					break;
-				default:
-					rv = EXIT_FAILURE;
+				guardcheader_internal(guard_base, input, output, input_name, output_name);
+				
+				rv = EXIT_SUCCESS;
+			}
+			else
+			{
+				rv = EXIT_FAILURE;
 			}
 			
 			if ( fclose(output) == EOF )
