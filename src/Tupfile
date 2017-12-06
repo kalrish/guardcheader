@@ -1,0 +1,13 @@
+include_rules
+
+ifeq (@(LANGUAGE),c)
+: foreach main.c log.c |> !cc |> {objs}
+: guardcheader.c | config/buffer_size.h |> !cc |> {objs}
+endif
+
+ifeq (@(LANGUAGE),c++)
+: foreach main.cpp log.cpp |> !cxx |> {objs}
+: guardcheader.cpp | config/buffer_size.hpp |> !cxx |> {objs}
+endif
+
+: {objs} |> !link |> guardcheader$(PROGRAM_SUFFIX)

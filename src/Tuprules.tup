@@ -1,0 +1,15 @@
+# Include the appropriate toolchain definition file
+include toolchains.tup/@(LANGUAGE)/@(TOOLCHAIN).tup
+
+ifdef TARGET
+	# If CONFIG_TARGET is defined, use its value for the $-variable TARGET
+	TARGET=@(TARGET)
+else
+	# Otherwise, default to the platform Tup is running on
+	TARGET=@(TUP_PLATFORM)
+endif
+
+# When building for Windows, executables should have the .exe extension
+ifeq ($(TARGET),win32)
+	PROGRAM_SUFFIX=.exe
+endif

@@ -1,0 +1,9 @@
+include_rules
+
+ifeq (@(LANGUAGE),c)
+: foreach *.h.in |> tup varsed %f %o |> %B
+endif
+
+ifeq (@(LANGUAGE),c++)
+: foreach *.hpp.in |> tup varsed %f %o |> %B
+endif

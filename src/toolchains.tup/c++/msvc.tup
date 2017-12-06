@@ -1,0 +1,2 @@
+!cxx = |> @(CL) /c @(CLFLAGS) @(CLFLAGS_%B) /Fo%o %f |> %B.obj
+!link = |> @(CL) /Fe%o %f @(LINKFLAGS) |>

@@ -1,0 +1,2 @@
+!cxx = |> @(CXX) -c @(CXXFLAGS) @(CXXFLAGS_%B) -o %o %f |> %B.o
+!link = |> @(CXX) @(LDFLAGS) -o %o %f |>

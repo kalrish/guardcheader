@@ -1,0 +1,2 @@
+!cc = |> @(CC) -c @(CFLAGS) @(CFLAGS_%B) -o %o %f |> %B.o
+!link = |> @(CC) @(LDFLAGS) -o %o %f |>
