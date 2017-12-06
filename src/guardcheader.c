@@ -130,18 +130,7 @@ static void write_filename_escaped
 	while ( c != 0 );
 }
 
-typedef uintmax_t hash_type;
-
-static void write_hash
-(
- const hash_type hash,
- FILE * const restrict output
-)
-{
-	fprintf(output, "%" PRIuMAX "UL", hash);
-}
-
-static hash_type copy_contents
+static void copy_contents
 (
  FILE * const restrict input,
  FILE * const restrict output
@@ -149,7 +138,6 @@ static hash_type copy_contents
 {
 	unsigned char buffer[BUFFER_SIZE];
 	size_t read;
-	hash_type hash = 0;
 	
 again:
 	read = fread(buffer, 1, sizeof(buffer), input);
@@ -159,12 +147,6 @@ again:
 		if ( read > 0 )
 		{
 			write(buffer, read, output);
-			
-			const unsigned char * restrict cur = buffer;
-			const unsigned char * const restrict end = buffer+read;
-			
-			for ( ; cur != end ; ++cur )
-				hash += *cur;
 			
 			goto again;
 		}
@@ -181,8 +163,6 @@ again:
 	{
 		throw(1);
 	}
-	
-	return hash;
 }
 
 static void guardcheader_internal
@@ -196,21 +176,13 @@ static void guardcheader_internal
 {
 	write_s("#ifndef ", output);
 	write_guard(guard_base, output_name, output);
+	write_s("\n#define ", output);
+	write_guard(guard_base, output_name, output);
 	write_s("\n\n\n#line 1 \"", output);
 	write_filename_escaped(input_name, output);
 	write_s("\"\n", output);
-	const hash_type hash = copy_contents(input, output);
-	write_s("\n\n#define ", output);
-	write_guard(guard_base, output_name, output);
-	write_c(' ', output);
-	write_hash(hash, output);
-	write_s("\n#elif ", output);
-	write_guard(guard_base, output_name, output);
-	write_s(" != ", output);
-	write_hash(hash, output);
-	write_s("\n#error Inclusion guard collision: a different file is using the same inclusion guard (", output);
-	write_guard(guard_base, output_name, output);
-	write_s(")\n#endif\n", output);
+	copy_contents(input, output);
+	write_s("\n\n#endif\n", output);
 }
 
 int guardcheader

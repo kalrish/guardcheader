@@ -125,25 +125,13 @@ namespace
 		while ( c != 0 );
 	}
 	
-	using hash_type = std::uintmax_t;
-	
-	void write_hash
-	(
-	 const hash_type hash,
-	 std::FILE * const output
-	)
-	{
-		std::fprintf(output, "%" PRIuMAX "UL", hash);
-	}
-	
-	hash_type copy_contents
+	void copy_contents
 	(
 	 std::FILE * const input,
 	 std::FILE * const output
 	)
 	{
 		std::array<char, buffer_size> buffer;
-		hash_type hash = 0;
 		
 again:
 		auto read = std::fread(buffer.data(), 1, buffer.size(), input);
@@ -153,9 +141,6 @@ again:
 			if ( read > 0 )
 			{
 				write(buffer.data(), read, output);
-				
-				for ( const auto c : buffer )
-					hash += c;
 				
 				goto again;
 			}
@@ -168,8 +153,6 @@ again:
 		{
 			throw 0;
 		}
-		
-		return hash;
 	}
 	
 	void guardcheader_internal
@@ -185,21 +168,13 @@ again:
 		
 		write("#ifndef "sv, output);
 		write_guard(guard_base, output_name, output);
+		write("\n#define "sv, output);
+		write_guard(guard_base, output_name, output);
 		write("\n\n\n#line 1 \""sv, output);
 		write_filename_escaped(input_name, output);
 		write("\"\n"sv, output);
-		const auto hash = copy_contents(input, output);
-		write("\n\n#define "sv, output);
-		write_guard(guard_base, output_name, output);
-		write(' ', output);
-		write_hash(hash, output);
-		write("\n#elif "sv, output);
-		write_guard(guard_base, output_name, output);
-		write(" != "sv, output);
-		write_hash(hash, output);
-		write("\n#error Inclusion guard collision: a different file is using the same inclusion guard ("sv, output);
-		write_guard(guard_base, output_name, output);
-		write(")\n#endif\n"sv, output);
+		copy_contents(input, output);
+		write("\n\n#endif\n"sv, output);
 	}
 }
 
