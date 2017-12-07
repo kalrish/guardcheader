@@ -70,8 +70,8 @@ static void write_sz
 
 #define write_s(str, output) \
 	{ \
-		const char s[] = str; \
-		write(s, sizeof(s)-1, output); \
+		const char s[sizeof(str)-1] = str; \
+		write(s, sizeof(s), output); \
 	}
 
 static void write_guard
