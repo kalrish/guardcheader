@@ -24,9 +24,11 @@ namespace
 	 std::FILE * const output
 	)
 	{
+		using namespace std::literals::string_view_literals;
+		
 		if ( std::fwrite(data, 1, size, output) != size )
 		{
-			err("couldn't write to the output file");
+			err("couldn't write to the output file"sv);
 			
 			throw 0;
 		}
@@ -38,9 +40,11 @@ namespace
 	 std::FILE * const output
 	)
 	{
+		using namespace std::literals::string_view_literals;
+		
 		if ( std::fputc(c, output) == EOF )
 		{
-			err("couldn't write to the output file");
+			err("couldn't write to the output file"sv);
 			
 			throw 0;
 		}
@@ -52,9 +56,11 @@ namespace
 	 std::FILE * const output
 	)
 	{
+		using namespace std::literals::string_view_literals;
+		
 		if ( std::fputs(data, output) == EOF )
 		{
-			err("couldn't write to the output file");
+			err("couldn't write to the output file"sv);
 			
 			throw 0;
 		}
@@ -190,6 +196,8 @@ noexcept
 	#error Less than two files may be open simultaneously
 #endif
 	
+	using namespace std::literals::string_view_literals;
+	
 	std::FILE * const input = std::fopen(input_name, "rb");
 	
 	if ( input )
@@ -211,23 +219,23 @@ noexcept
 			}
 			
 			if ( std::fclose(output) == EOF )
-				warn("couldn't close output file");
+				warn("couldn't close output file"sv);
 		}
 		else
 		{
-			err("couldn't open output file");
+			err("couldn't open output file"sv);
 			
 			rv = EXIT_FAILURE;
 		}
 		
 		if ( std::fclose(input) == EOF )
-			warn("couldn't close input file");
+			warn("couldn't close input file"sv);
 		
 		return rv;
 	}
 	else
 	{
-		err("couldn't open input file");
+		err("couldn't open input file"sv);
 		
 		return EXIT_FAILURE;
 	}
