@@ -1,14 +1,12 @@
 #include "config.hpp"
-#include "config/buffer_size.hpp"
 
 #include "guardcheader.hpp"
 
+#include "config/buffer_size.hpp"
 #include <cstdlib>
 #include <cstdio>
-
 #include <array>
 #include <string_view>
-
 #include "log.hpp"
 
 
