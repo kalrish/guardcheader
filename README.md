@@ -19,7 +19,7 @@ Parameters are specified in the usual way, in a `tup.config` file. You might be 
 The steps are as follows:
 
  1.  Choose whether to use the C or the C++ version of the program (`CONFIG_LANGUAGE`).
- 2.  Choose an appropriate toolchain (`CONFIG_TOOLCHAIN`) which supports the chosen language. Toolchains are defined in `src/toolchains.tup`.
+ 2.  Choose an appropriate toolchain (`CONFIG_TOOLCHAIN`) which supports the chosen language. Toolchains are defined in [src/toolchains.tup](src/toolchains.tup).
  3.  Fulfill the config items supported or required by the chosen toolchain (e.g. `CONFIG_CFLAGS` for the GNU toolchain when building the C version).
  4.  Choose appropriate values for toolchain-independent variables (like `CONFIG_BUFFER_SIZE`).
 
