@@ -9,16 +9,18 @@ namespace
 {
 	void log_basic
 	(
-	 const char * const lvl,
+	 const std::string_view & lvl,
 	 const std::string_view & msg
 	)
 	noexcept
 	{
-		std::fputs(lvl, stderr);
+		std::fwrite(lvl.data(), 1, lvl.size(), stderr);
 		std::fwrite(msg.data(), 1, msg.size(), stderr);
 		std::fputc('\n', stderr);
 	}
 }
+
+using namespace std::literals::string_view_literals;
 
 void warn
 (
@@ -26,7 +28,7 @@ void warn
 )
 noexcept
 {
-	log_basic("warning: ", msg);
+	log_basic("warning: "sv, msg);
 }
 
 void err
@@ -35,5 +37,5 @@ void err
 )
 noexcept
 {
-	log_basic("error: ", msg);
+	log_basic("error: "sv, msg);
 }
