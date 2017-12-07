@@ -2,9 +2,7 @@
 
 #include <cstdlib>
 #include <cstdio>
-
 #include <string_view>
-
 #include "log.hpp"
 #include "guardcheader.hpp"
 
