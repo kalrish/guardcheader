@@ -5,15 +5,28 @@
 #include <cstdio>
 
 
+namespace
+{
+	void log_basic
+	(
+	 const char * const lvl,
+	 const std::string_view & msg
+	)
+	noexcept
+	{
+		std::fputs(lvl, stderr);
+		std::fwrite(msg.data(), 1, msg.size(), stderr);
+		std::fputc('\n', stderr);
+	}
+}
+
 void warn
 (
  const std::string_view & msg
 )
 noexcept
 {
-	std::fputs("warning: ", stderr);
-	std::fwrite(msg.data(), 1, msg.size(), stderr);
-	std::fputc('\n', stderr);
+	log_basic("warning: ", msg);
 }
 
 void err
@@ -22,7 +35,5 @@ void err
 )
 noexcept
 {
-	std::fputs("error: ", stderr);
-	std::fwrite(msg.data(), 1, msg.size(), stderr);
-	std::fputc('\n', stderr);
+	log_basic("error: ", msg);
 }
