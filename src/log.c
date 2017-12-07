@@ -6,6 +6,19 @@
 #include "strlit.h"
 
 
+static void log_basic
+(
+ const char * const restrict lvl,
+ const size_t lvl_s,
+ const char * const restrict msg,
+ const size_t msg_s
+)
+{
+	fwrite(lvl, 1, lvl_s, stderr);
+	fwrite(msg, 1, msg_s, stderr);
+	fputc('\n', stderr);
+}
+
 void warn_impl
 (
  const char * const restrict s,
@@ -13,9 +26,7 @@ void warn_impl
 )
 {
 	static strlit(s_warning, "warning: ");
-	fwrite(s_warning, 1, sizeof(s_warning), stderr);
-	fwrite(s, 1, n, stderr);
-	fputc('\n', stderr);
+	log_basic(s_warning, sizeof(s_warning), s, n);
 }
 
 void err_impl
@@ -25,7 +36,5 @@ void err_impl
 )
 {
 	static strlit(s_error, "error: ");
-	fwrite(s_error, 1, sizeof(s_error), stderr);
-	fwrite(s, 1, n, stderr);
-	fputc('\n', stderr);
+	log_basic(s_error, sizeof(s_error), s, n);
 }
