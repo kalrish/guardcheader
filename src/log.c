@@ -6,24 +6,26 @@
 #include "strlit.h"
 
 
-void warn
+void warn_impl
 (
- const char * const restrict s
+ const char * const restrict s,
+ const size_t n
 )
 {
 	static strlit(s_warning, "warning: ");
 	fwrite(s_warning, 1, sizeof(s_warning), stderr);
-	fputs(s, stderr);
+	fwrite(s, 1, n, stderr);
 	fputc('\n', stderr);
 }
 
-void err
+void err_impl
 (
- const char * const restrict s
+ const char * const restrict s,
+ const size_t n
 )
 {
 	static strlit(s_error, "error: ");
 	fwrite(s_error, 1, sizeof(s_error), stderr);
-	fputs(s, stderr);
+	fwrite(s, 1, n, stderr);
 	fputc('\n', stderr);
 }
