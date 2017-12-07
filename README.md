@@ -6,7 +6,7 @@ This program adds inclusion guards to C and C++ headers so that their contents d
 
 ##  Background
 
-Even in small-sized C and C++ projects, the same header files might be included multiple times in the same translation unit, which causes problems except in simple cases. To avoid problems, the headers' contents shall be processed only once, and the standard way to achieve that are the so-called "inclusion guards". Inclusion guards employ a macro that is usually derived from the file name. Thus, it is best to automatize its addition.
+Even in small-sized C and C++ projects, the same header files might be included multiple times in the same translation unit, which causes problems except in simple cases. To avoid problems, the headers' contents should be processed only once, and the standard way to achieve that are the so-called "inclusion guards". Inclusion guards employ a macro that is usually derived from the file name. Thus, it is best to automatize its addition.
 
 
 ##  Build
