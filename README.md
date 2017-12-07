@@ -1,7 +1,7 @@
 # guardcheader
 Program to guard C and C++ headers
 
-This program adds inclusion guards to C and C++ headers so that their contents do not get processed more than once even if they are included multiple times.
+This program adds inclusion guards to C and C++ headers so that their contents do not get processed more than once even if they are included multiple times. The **#line** directive is used so that warnings and errors refer to the original file and the proper lines.
 
 
 ##  Background
