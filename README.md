@@ -23,7 +23,7 @@ The steps are as follows:
  3.  Fulfill the config items supported or required by the chosen toolchain (e.g. `CONFIG_CFLAGS` for the GNU toolchain when building the C version).
  4.  Choose appropriate values for toolchain-independent variables (like `CONFIG_BUFFER_SIZE`).
 
-Example configurations which may or may not be suitable for your build environment are provided in the `configs.tup` directory. You could try to proceed to the build step by just copying any of them to the root as `tup.config`.
+Example configurations which may or may not be suitable for your build environment are provided in [configs.tup](configs.tup). You could try to proceed to the build step by just copying any of them to the root as `tup.config`.
 
 ###  Build
 The build step follows the standard procedure:
