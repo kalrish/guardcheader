@@ -12,6 +12,7 @@
 #include "restrict.h"
 #include "noreturn.h"
 #include "log.h"
+#include "strlit.h"
 
 
 static jmp_buf jump_buffer;
@@ -70,7 +71,7 @@ static void write_sz
 
 #define write_s(str, output) \
 	{ \
-		const char s[sizeof(str)-1] = str; \
+		strlit(s, str); \
 		write(s, sizeof(s), output); \
 	}
 
