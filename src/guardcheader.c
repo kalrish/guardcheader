@@ -4,9 +4,6 @@
 
 #include "config/buffer_size.h"
 #include <stdlib.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <inttypes.h>
 #include <setjmp.h>
 #include <stdio.h>
 #include "restrict.h"
