@@ -15,6 +15,8 @@
 #include "log.hpp"
 
 
+using namespace std::literals::string_view_literals;
+
 namespace
 {
 	void write
@@ -24,8 +26,6 @@ namespace
 	 std::FILE * const output
 	)
 	{
-		using namespace std::literals::string_view_literals;
-		
 		if ( std::fwrite(data, 1, size, output) != size )
 		{
 			err("couldn't write to the output file"sv);
@@ -40,8 +40,6 @@ namespace
 	 std::FILE * const output
 	)
 	{
-		using namespace std::literals::string_view_literals;
-		
 		if ( std::fputc(c, output) == EOF )
 		{
 			err("couldn't write to the output file"sv);
@@ -56,8 +54,6 @@ namespace
 	 std::FILE * const output
 	)
 	{
-		using namespace std::literals::string_view_literals;
-		
 		if ( std::fputs(data, output) == EOF )
 		{
 			err("couldn't write to the output file"sv);
@@ -114,8 +110,6 @@ namespace
 	 std::FILE * const output
 	)
 	{
-		using namespace std::literals::string_view_literals;
-		
 		char c = *p;
 		
 		do
@@ -170,8 +164,6 @@ again:
 	 const char * const output_name
 	)
 	{
-		using namespace std::literals::string_view_literals;
-		
 		write("#ifndef "sv, output);
 		write_guard(guard_base, output_name, output);
 		write("\n#define "sv, output);
@@ -195,8 +187,6 @@ noexcept
 #if FOPEN_MAX < 2
 	#error Less than two files may be open simultaneously
 #endif
-	
-	using namespace std::literals::string_view_literals;
 	
 	std::FILE * const input = std::fopen(input_name, "rb");
 	
