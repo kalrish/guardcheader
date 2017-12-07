@@ -1,9 +1,11 @@
+#include <string_view>
+
 void warn
 (
- const char * const
+ const std::string_view &
 ) noexcept;
 
 void err
 (
- const char * const
+ const std::string_view &
 ) noexcept;
