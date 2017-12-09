@@ -43,7 +43,7 @@ All versions admit the GNU standard to find out their version:
 
     $  guardcheader --version
 
-This prints `guardcheader `_`LANGUAGE`_` `_`VERSION`_, where _LANGUAGE_ is the programming language in which the used version was written (C or C++) and _VERSION_, the version string.
+This prints `guardcheader `_`LANGUAGE VERSION`_, where _LANGUAGE_ is the programming language in which the used version was written (C or C++) and _VERSION_, the version string.
 
 ###  Current version
 
