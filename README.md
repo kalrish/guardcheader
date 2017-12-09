@@ -53,7 +53,7 @@ The program shall be invoked as follows:
 
 _INPUT_ and _OUTPUT_ are the names of the files that shall be read and written, respectively. They should be different files.
 
-_BASE_ is the start of the inclusion guard (e.g.: `MYLIB`). It is used to identify libraries and should not be empty.
+_BASE_ is the start of the inclusion guard. It is used to identify libraries and should not be empty.
 
 Assuming the hand-written header, which has no inclusion guards, is called `foo.h.in` and belongs to a library called "mylib", just run:
 
