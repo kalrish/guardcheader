@@ -55,8 +55,6 @@ _INPUT_ and _OUTPUT_ are the names of the files that shall be read and written, 
 
 _BASE_ is the start of the inclusion guard (e.g.: `MYLIB`). It is used to identify libraries and should not be empty.
 
-##  Example
-
 Assuming the hand-written header, which has no inclusion guards, is called `foo.h.in` and belongs to a library called "bar", just run:
 
     $  guardcheader BAR foo.h.in foo.h
